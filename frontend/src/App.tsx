@@ -31,4 +31,3 @@ function App() {
 }
 
 export default App
-// http://localhost:3000/api/v1/brain/bg7ncplhxm  

@@ -3,7 +3,18 @@ import { model, Schema } from "mongoose"
 import mongoose from "mongoose";
 import { string } from "zod";
 require("dotenv").config();
-mongoose.connect(process.env.MONGO_URL as string)
+
+async function connectDB() {
+    await mongoose.connect(process.env.MONGO_URL as string).then(() => {
+        console.log("DB connected");
+
+    }).catch((err) => {
+        console.log("Error while Connecting to db ", err);
+
+    });
+}
+
+connectDB();
 
 const UserSchema = new Schema({
     username: { type: String, required: true },

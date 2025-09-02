@@ -1,14 +1,16 @@
 import express from "express";
-import cors from "cors";
 import dotenv from "dotenv";
+import cors from "cors";
 import userRoutes from "./routes/userRoutes";
 import contentRoutes from "./routes/contentRoutes";
 import shareRoutes from "./routes/shareRoutes";
 
 dotenv.config();
 const app = express();
+
+// ✅ Allow all origins (no restriction)
+app.use(cors());
 app.use(express.json());
-app.use(cors({ origin: process.env.FRONTEND_URL || '*' }));
 
 // Global req.userId extension
 declare global {
@@ -18,7 +20,6 @@ declare global {
     }
   }
 }
-
 
 app.use("/api/v1", userRoutes);
 app.use("/api/v1/content", contentRoutes);
