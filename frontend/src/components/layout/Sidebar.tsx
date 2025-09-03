@@ -27,7 +27,7 @@ export function SideBar({ logoutIcon, content, setFilteredContent }: SidebarProp
 
     // Filtering runs automatically when selectedFilter or content changes
     useEffect(() => {
-        if (!content || content.length === 0) return;
+        if (!content) return;
 
         if (selectedFilter === "all") {
             setFilteredContent(content);
