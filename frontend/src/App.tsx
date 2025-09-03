@@ -2,7 +2,7 @@ import { Brain } from "./pages/Brain";
 import Dashboard from "./pages/Dashboard";
 import { Signin } from "./pages/Signin";
 import { Signup } from "./pages/Signup";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, HashRouter } from "react-router-dom";
 import { Bounce, ToastContainer } from 'react-toastify';
 
 function App() {
