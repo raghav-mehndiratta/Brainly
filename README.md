@@ -1,6 +1,6 @@
 # Brainly-15
 
-A full-stack application with React frontend and Express backend.
+A full-stack application with React frontend and Express backend. Brainly acts as your second brain where you can store the links of any videos, tweets etc. which you wanna look into later.
 
 ## Tech Stack
 
@@ -45,26 +45,6 @@ A full-stack application with React frontend and Express backend.
    cd frontend
    npm run dev
    ```
-
-## Deployment
-
-### Backend (Render)
-1. Connect your GitHub repo to Render
-2. Set build command: `npm run build`
-3. Set start command: `npm start`
-4. Add environment variables:
-   - `PORT` (auto-set by Render)
-   - `MONGO_URI` (your MongoDB connection string)
-   - `JWT_SECRET` (your JWT secret)
-   - `FRONTEND_URL` (your frontend domain)
-   - `NODE_ENV=production`
-
-### Frontend (Vercel)
-1. Connect your GitHub repo to Vercel
-2. Set build command: `npm run build`
-3. Set output directory: `dist`
-4. Add environment variables:
-   - `VITE_BACKEND_URL` (your backend domain)
 
 ## API Endpoints
 
