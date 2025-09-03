@@ -4,10 +4,11 @@
       "ROLLUP_SKIP_NODEJS_NATIVE": "1"
     }
   },
-  "rewrites": [
+  "redirects": [
     {
       "source": "/(.*)",
-      "destination": "/"
+      "destination": "/index.html",
+      "statusCode": 200
     }
   ]
 }
