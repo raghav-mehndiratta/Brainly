@@ -1,0 +1,7 @@
+{
+  "build": {
+    "env": {
+      "ROLLUP_SKIP_NODEJS_NATIVE": "1"
+    }
+  }
+}
