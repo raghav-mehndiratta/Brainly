@@ -1,14 +1,8 @@
 {
-  "build": {
-    "env": {
-      "ROLLUP_SKIP_NODEJS_NATIVE": "1"
-    }
-  },
-  "redirects": [
+  "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/index.html",
-      "statusCode": 200
+      "destination": "/index.html"
     }
   ]
 }
