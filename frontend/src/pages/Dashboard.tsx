@@ -37,8 +37,8 @@ function Dashboard() {
                     contentId
                 }
             })
-            setContents((prev: any[]) => prev.filter(item => item.id !== contentId));
-            refetch()
+            // Update contents
+            setContents((prev: any[]) => prev.filter(item => item._id !== contentId));
             toast.success("Content deleted successfully", {
                 position: "top-center"
             });
@@ -66,6 +66,10 @@ function Dashboard() {
             { y: 0, duration: 0.5, ease: "" }
         );
     }, []);
+
+    useEffect(() => {
+        setFilteredContent(contents);
+    }, [contents]);
 
     return <>
         <div className="md:flex md:flex-row md:items-start">
@@ -105,9 +109,9 @@ function Dashboard() {
 
 async function shareBrain() {
     toast.info("This feature is currently under development", {
-            position: "top-center"
-        })
-        return;
+        position: "top-center"
+    })
+    return;
     try {
         const response = await axios.post(`${BACKEND_URL}/api/v1/brain/share`, {
             share: true
