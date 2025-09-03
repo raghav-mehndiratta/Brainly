@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Bounce, ToastContainer } from 'react-toastify';
 
 function App() {
-  return <BrowserRouter>
+  return <HashRouter>
     <ToastContainer
       position="top-right"
       autoClose={3000}
@@ -27,7 +27,7 @@ function App() {
       <Route path="/brain/:hash" element={<Brain />} />
       <Route path="/" element={<Navigate to="/dashboard" />} />
     </Routes>
-  </BrowserRouter>
+  </HashRouter>
 }
 
 export default App
