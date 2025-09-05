@@ -92,9 +92,23 @@ function Dashboard() {
                         </div>
                     </div>
                     <div ref={heroRef} className="flex flex-row flex-wrap gap-2 md:gap-4 mt-7 p-4">
-                        {filteredContent.map(({ _id, type, link, title, selectedTags, createdAt }) => (
-                            <Card key={_id} title={title} type={type} link={link} selectedTags={selectedTags} createdAt={createdAt} onDelete={() => { deleteCard(_id) }} />
-                        ))}
+                        {contents.length > 0 ? (
+                            filteredContent.map(({ _id, type, link, title, selectedTags, createdAt }) => (
+                                <Card
+                                    key={_id}
+                                    title={title}
+                                    type={type}
+                                    link={link}
+                                    selectedTags={selectedTags}
+                                    createdAt={createdAt}
+                                    onDelete={() => deleteCard(_id)}
+                                />
+                            ))
+                        ) : (
+                            <div className="w-full flex items-center justify-center select-none">
+                                <img className="opacity-60 w-[200px] xs:w-[300px] md:w-[400px] lg:w-[500px]" src="https://res.cloudinary.com/dgsnfkxh3/image/upload/v1757070339/piclumen-1757070244797_qc6ktz.png" alt="" />
+                            </div>
+                        )}
                     </div>
                 </div>
                 <AddContentModal
