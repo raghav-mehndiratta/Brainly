@@ -18,9 +18,18 @@ export function AddContentModal({ open, onClose, refetch }: any) {
     const titleRef = useRef<HTMLInputElement>(null)
     const linkRef = useRef<HTMLInputElement>(null)
     const [type, setType] = useState<ContentType>(ContentVariants.Youtube)
+    const [loading, setLoading] = useState(false)
+
     async function addContent() {
+        setLoading(true)
         const title = titleRef.current?.value
         const link = linkRef.current?.value
+        if(!link) {
+            toast.dismiss()
+            toast.warning("You need to provide a link")
+            setLoading(false)
+            return
+        }
         const embeddedLink = getEmbeddedYouTubeLink(link || "");
         try {
             await axios.post(`${BACKEND_URL}/api/v1/content`, {
@@ -42,6 +51,7 @@ export function AddContentModal({ open, onClose, refetch }: any) {
             console.log("Something went wrnong" + err);
 
         }
+        setLoading(false)
     }
 
     const tags = ["important", "educational", "political", "timepass", "interesting"];
@@ -88,12 +98,12 @@ export function AddContentModal({ open, onClose, refetch }: any) {
                         </span>
                     ))}
                 </div>
-                <div className="w-full flex justify-evenly p-4">
-                    <Button size="md" text="Youtube" variant={type == ContentVariants.Youtube ? "primary" : "secondary"} onclick={() => { setType(ContentVariants.Youtube) }} className="hover:scale-105 transition-all" />
-                    <Button size="md" text="Twitter" variant={type == ContentVariants.Twitter ? "primary" : "secondary"} onclick={() => { setType(ContentVariants.Twitter) }} className="hover:scale-105 transition-all" />
+                <div className="w-full flex justify-evenly gap-4 p-4">
+                    <Button size="md" text="Youtube" variant={type == ContentVariants.Youtube ? "primary" : "secondary"} onClick={() => { setType(ContentVariants.Youtube) }} className="hover:scale-105 transition-all w-full" />
+                    <Button size="md" text="Twitter" variant={type == ContentVariants.Twitter ? "primary" : "secondary"} onClick={() => { setType(ContentVariants.Twitter) }} className="hover:scale-105 transition-all w-full" />
                 </div>
                 <div className="flex justify-center p-3 w-full">
-                    <Button fullWidth={true} variant="primary" text="Submit" size="md" onclick={addContent} className="hover:scale-95 active:scale-100 transition-all" />
+                    <Button loading={loading} fullWidth={true} variant="primary" text="Submit" size="md" onClick={addContent} className="hover:scale-95 active:scale-100 transition-all" />
                 </div>
             </div>
         </div>}

@@ -76,22 +76,22 @@ function Dashboard() {
             <div className="flex flex-row justify-between">
                 <SideBar logoutIcon={true} content={contents} setFilteredContent={setFilteredContent} />
                 <div className="flex md:hidden gap-2 mt-4 pr-2">
-                    <Button variant="primary" size="md" text="Add Content" onclick={() => { setModalOpen(true) }} startIcon={<PlusIcon size="md" />} className="transition-all md:hover:scale-105 active:scale-95" ></Button>
-                    <Button variant="secondary" size="md" text="Share Brain" onclick={shareBrain} startIcon={<ShareIcon size="md" />} className="transition-all md:hover:scale-105 active:scale-95" ></Button>
+                    <Button variant="primary" size="md" text="Add Content" onClick={() => { setModalOpen(true) }} startIcon={<PlusIcon size="md" />} className="transition-all md:hover:scale-105 active:scale-95" ></Button>
+                    <Button variant="secondary" size="md" text="Share Brain" onClick={shareBrain} startIcon={<ShareIcon size="md" />} className="transition-all md:hover:scale-105 active:scale-95" ></Button>
                 </div>
             </div>
-            <div className="min-h-screen">
-                <div className="">
+            <div className="min-h-screen w-full">
+                <div className="w-full">
                     <div className="w-full flex justify-end md:justify-between items-center gap-4">
                         <div className="hidden md:block text-md md:text-xl font-semibold pl-4">
                             {contents.length > 0 && contents[0]?.userId?.username} {contents.length > 0 && <span className="text-purple-300 font-semibold">'s Brain</span>}
                         </div>
                         <div className="md:flex hidden md:gap-4 gap-2 pt-4 pr-2">
-                            <Button variant="primary" size="md" text="Add Content" onclick={() => { setModalOpen(true) }} startIcon={<PlusIcon size="md" />} className="transition-all md:hover:scale-105 active:scale-95" ></Button>
-                            <Button variant="secondary" size="md" text="Share Brain" onclick={shareBrain} startIcon={<ShareIcon size="md" />} className="cursor-not-allowed transition-all md:hover:scale-105 active:scale-95" ></Button>
+                            <Button variant="primary" size="md" text="Add Content" onClick={() => { setModalOpen(true) }} startIcon={<PlusIcon size="md" />} className="transition-all md:hover:scale-105 active:scale-95" ></Button>
+                            <Button variant="secondary" size="md" text="Share Brain" onClick={shareBrain} startIcon={<ShareIcon size="md" />} className="cursor-not-allowed transition-all md:hover:scale-105 active:scale-95" ></Button>
                         </div>
                     </div>
-                    <div ref={heroRef} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-6 mt-7 p-4">
+                    <div ref={heroRef} className="flex flex-row flex-wrap gap-2 md:gap-4 mt-7 p-4">
                         {filteredContent.map(({ _id, type, link, title, selectedTags, createdAt }) => (
                             <Card key={_id} title={title} type={type} link={link} selectedTags={selectedTags} createdAt={createdAt} onDelete={() => { deleteCard(_id) }} />
                         ))}

@@ -23,6 +23,7 @@ export function Signup() {
         const password = passwordRef.current?.value || "";
 
         if (!username || !email || !password) {
+            toast.dismiss();
             toast.error("All fields are required");
             setLoading(false);
             return;
@@ -30,9 +31,11 @@ export function Signup() {
 
         try {
             await signup({ username, email, password });
+            toast.dismiss();
             toast.success("Signed up successfully 🎉");
             navigate("/signin");
         } catch (err: any) {
+            toast.dismiss();
             toast.error(err.message);
         } finally {
             setLoading(false);
@@ -73,7 +76,7 @@ export function Signup() {
                             <Input ref={emailRef} placeholder="Email" />
                         </div>
                         <div className="m-2 mt-4">
-                            <Input ref={passwordRef} placeholder="Password" />
+                            <Input ref={passwordRef} placeholder="Password" type="password" />
                         </div>
                     </div>
                     <div className="flex text-white text-sm pt-1 pb-4 p-3 gap-2">

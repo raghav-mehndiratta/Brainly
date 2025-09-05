@@ -20,11 +20,13 @@ export function Signin() {
         const password = passwordRef.current?.value || "";
 
         if (!email) {
+            toast.dismiss();
             toast.error("Email is required");
             setLoading(false);
             return;
         }
         if (!password) {
+            toast.dismiss();
             toast.error("Password is required");
             setLoading(false);
             return;
@@ -34,12 +36,15 @@ export function Signin() {
             const response = await signin({ email, password });
             const jwt = response.data.token;
             localStorage.setItem("token", jwt);
-
+            toast.dismiss();
             toast.success("Signed in successfully", { position: "top-center" });
             navigate("/dashboard");
-        } catch (err: any) {
-            toast.error(err.message);
-        } finally {
+        }
+        catch (err: any) {
+            toast.dismiss();
+            toast.error(err?.message || "Signin failed");
+        }
+        finally {
             setLoading(false);
         }
     }
@@ -72,12 +77,25 @@ export function Signin() {
                 >
                     <div className="mt-2">
                         <div className="m-2">
-                            <Input ref={emailRef} placeholder="Email" />
+                            <Input
+                                ref={emailRef}
+                                placeholder="Email"
+                                className="w-full px-4 py-2 
+                                        rounded-lg border border-gray-700 bg-gray-900 text-white 
+                                      placeholder-gray-400 outline-none
+                                        focus:ring-2 focus:ring-purple-300 focus:border-purple-300
+                                        transition-all duration-200 ease-in-out" />
                         </div>
                         <div className="m-2 mt-4">
                             <Input
+                                type="password"
                                 ref={passwordRef}
                                 placeholder="Password"
+                                className="w-full px-4 py-2 
+                                        rounded-lg border border-gray-700 bg-gray-900 text-white 
+                                      placeholder-gray-400 outline-none
+                                        focus:ring-2 focus:ring-purple-300 focus:border-purple-300
+                                        transition-all duration-200 ease-in-out"
                             />
                         </div>
                     </div>
