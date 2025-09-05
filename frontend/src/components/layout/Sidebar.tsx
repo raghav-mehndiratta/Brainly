@@ -97,16 +97,15 @@ export function SideBar({ logoutIcon, content, setFilteredContent }: SidebarProp
                     `} >
                             <SideBarItem text="Youtube" icon={<YoutubeIcon />} />
                         </div>
+                        {logoutIcon && (<div onClick={handleLogout} className={`
+                        w-52 rounded-md
+                        ${selectedFilter == "youtube" ? "bg-gray-300" : "bg-transparent"}
+                    `} >
+                            <SideBarItem text="Logout" icon={<LogoutIcon className="" />} />
+                        </div>)}
                     </div>
                 </div>
             </div>
-            {logoutIcon && (
-                <div className="w-full flex justify-end p-4">
-                    <span onClick={handleLogout}>
-                        <LogoutIcon className="hover:scale-110 duration-200 text-gray-600 hover:text-black active:scale-95 cursor-pointer" />
-                    </span>
-                </div>
-            )}
         </div>
     </>);
 }
